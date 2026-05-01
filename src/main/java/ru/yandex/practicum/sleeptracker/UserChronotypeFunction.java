@@ -6,8 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.function.Function;
 
-public class UserChronotypeFunction
-        implements Function<List<SleepingSession>, SleepAnalysisResult> {
+public class UserChronotypeFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
 
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {

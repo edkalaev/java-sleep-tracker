@@ -17,9 +17,11 @@ public class SleeplessNightsCountFunction implements Function<List<SleepingSessi
         LocalDate firstNightDate = getFirstNightDate(sessions.getFirst());
         LocalDate lastNightDate = sessions.getLast().getWakeTime().toLocalDate();
 
-        long sleeplessNights = firstNightDate.isAfter(lastNightDate)
-                ? 0
-                : firstNightDate.datesUntil(lastNightDate.plusDays(1))
+        if (firstNightDate.isAfter(lastNightDate)) {
+            return new SleepAnalysisResult("Количество бессонных ночей", 0L);
+        }
+
+        long sleeplessNights = firstNightDate.datesUntil(lastNightDate.plusDays(1))
                 .filter(nightDate -> {
                     long sessionsCount = sessions.stream()
                             .filter(session -> intersectsNight(session, nightDate))
